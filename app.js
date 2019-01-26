@@ -38,10 +38,23 @@ var UIController = (function() {
 // Module that connects the budgetController and the UIController
 var controller = (function(budgetCtrl, UICtrl) {
 
-    var DOM = UICtrl.getDOMStrings();
+    // Previously, the event listeners were not inside a function, so they were set when the IIFE was executed
+    // Now, this function has to be called so that they are set
+    var setupEventListeners = function() {
+
+        var DOM = UICtrl.getDOMStrings();
+
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+
+        // The keypress event happens on the page, not on a specific element
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') ctrlAddItem();
+        });
+
+    }
 
     var ctrlAddItem = function() {
-        
+
         // 1. Get input data
         var input = UICtrl.getInput();
         console.log(input);
@@ -56,15 +69,13 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     }
 
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
-
-    // The keypress event happens on the page, not on a specific element
-    document.addEventListener('keypress', function(event) {
-        
-        if (event.key === 'Enter') {
-            ctrlAddItem();
+    return {
+        init: function() {
+            console.log('Application has started');
+            setupEventListeners();
         }
-
-    });
+    }
 
 })(budgetController, UIController);
+
+controller.init();
