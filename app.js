@@ -27,8 +27,7 @@ var budgetController = (function() {
         }
     }
 
-    // Object assigned to budgetController
-    // addItem() is accessible from other controllers
+    // 'Public' Object assigned to budgetController
     return {
         addItem: function(type, desc, val) {
             var newItem, ID;
@@ -71,8 +70,7 @@ var UIController = (function() {
         expensesContainer: '.expenses__list'
     }
 
-    // Public object (its methods can be accessed from other controllers)
-    // The returned object is assigned to UIController
+    // 'Public' Object assigned to UIController
     return {
         getInput: function() {
             return {
@@ -87,7 +85,6 @@ var UIController = (function() {
             var html, newHtml, element;
 
             // 1. Create HTML string with placeholder text
-
             if (type === 'inc') { 
                 element = DOMStrings.incomeContainer;
 
@@ -105,6 +102,23 @@ var UIController = (function() {
 
             // 3. Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+        },
+
+        clearFields: function() {
+            var fields, fieldsArray;
+
+            fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
+
+            // NodeList to Array
+            fieldsArray = Array.prototype.slice.call(fields);
+
+            // Clear input fields
+            fieldsArray.forEach(function(current, index, array) {
+                current.value = '';
+            });
+
+            // Set focus back to the description field
+            fieldsArray[0].focus();
         },
 
         getDOMStrings: function() {
@@ -144,12 +158,16 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 3. Add item to UI
         UICtrl.addListItem(newItem, input.type);
 
-        // 4. Calculate the budget
+        // 4. Clear the fields
+        UICtrl.clearFields();
 
-        // 5. Display the budget on the UI
+        // 5. Calculate the budget
+
+        // 6. Display the budget on the UI
 
     }
 
+    // 'Public' Object assigned to controller
     return {
         init: function() {
             console.log('Application has started');
