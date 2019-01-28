@@ -111,7 +111,8 @@ var UIController = (function() {
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expensesLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage'
+        percentageLabel: '.budget__expenses--percentage',
+        container: '.container'
     }
 
     // 'Public' Object assigned to UIController
@@ -132,11 +133,11 @@ var UIController = (function() {
             if (type === 'inc') { 
                 element = DOMStrings.incomeContainer;
 
-                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             } else if (type === 'exp') {
                 element = DOMStrings.expensesContainer;
 
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
 
             // 2. Replace the placeholder text with some actual data
@@ -176,12 +177,7 @@ var UIController = (function() {
             } else {   
                 document.querySelector(DOMStrings.percentageLabel).textContent = '---';
             }
-        },  
-
-        // budget: data.budget,
-        // totalInc: data.totals.inc,
-        // totalExp: data.totals.exp,
-        // percentage: data.percentage
+        },
 
         getDOMStrings: function() {
             return DOMStrings;
@@ -205,6 +201,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         document.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') ctrlAddItem();
         });
+
+        // Event delegation
+        document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
 
     }
 
@@ -244,11 +243,33 @@ var controller = (function(budgetCtrl, UICtrl) {
         }
     }
 
+    var ctrlDeleteItem = function(event) {
+        var itemID, splitID, type, ID;
+
+        // itemID = type-id (from the data.allItems structure)
+        // with the type we can access the 'inc' and 'exp' arrays, and then delete the corresponding item based on its 'id'
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+
+        if (itemID) {
+            splitID = itemID.split('-');
+            type = splitID[0];
+            ID = splitID[1];
+
+            // Delete item from data structure
+
+
+            // Delete item from UI
+
+
+            // Update and display new budget
+        }
+    }
+
     // 'Public' Object assigned to controller
     return {
         init: function() {
             console.log('Application has started');
-            
+
             UICtrl.displayBudget({
                 budget: 0,
                 totalInc: 0,
