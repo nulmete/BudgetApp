@@ -307,7 +307,7 @@ var UIController = (function() {
                 } else {
                     current.textContent = '---';
                 }
-            })
+            });
         },
 
         displayDate: function() {
@@ -321,6 +321,20 @@ var UIController = (function() {
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
             document.querySelector(DOMStrings.dateLabel).textContent = months[month] + ' ' + year;
+        },
+
+        changeType: function() {
+            var fields = document.querySelectorAll(
+                DOMStrings.inputType + ',' +
+                DOMStrings.inputDescription + ',' +
+                DOMStrings.inputValue
+            );
+
+            Array.prototype.forEach.call(fields, function(current) {
+                current.classList.toggle('red-focus');
+            });
+
+            document.querySelector(DOMStrings.inputBtn).classList.toggle('red');
         },
 
         getDOMStrings: function() {
@@ -348,6 +362,8 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // Event delegation
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+
+        document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changeType);
 
     }
 
