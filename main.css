@@ -1,0 +1,335 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@media only screen and (max-width: 50em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  background: #f4f4f4;
+  color: #333;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+.mb-small {
+  margin-bottom: 1.5rem;
+}
+
+.mb-medium {
+  margin-bottom: 3.5rem;
+}
+
+.budget {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(51, 51, 51, 0.65)), to(rgba(51, 51, 51, 0.65))), url(img/background.jpeg);
+  background-image: linear-gradient(rgba(51, 51, 51, 0.65), rgba(51, 51, 51, 0.65)), url(img/background.jpeg);
+  background-size: cover;
+  background-position: top;
+  padding: 5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #ecf0f1;
+}
+
+.budget__title {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.budget__value {
+  font-size: 4.5rem;
+  font-weight: 700;
+}
+
+.budget__income {
+  background-color: #1abc9c;
+}
+
+.budget__expenses {
+  background-color: #e74c3c;
+}
+
+.budget__income, .budget__expenses {
+  font-size: 2.2rem;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 2rem;
+}
+
+@media only screen and (max-width: 50em) {
+  .budget__income, .budget__expenses {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .budget__income, .budget__expenses {
+    width: 80%;
+  }
+}
+
+.budget__income-text, .budget__expenses-text {
+  margin-right: auto;
+}
+
+.budget__income-percentage, .budget__expenses-percentage {
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-left: 1rem;
+}
+
+.budget__expenses-percentage {
+  background-color: rgba(244, 244, 244, 0.2);
+}
+
+.budget__income, .budget__expenses, .budget__expenses-percentage {
+  border-radius: 2px;
+}
+
+.input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2.5rem 0;
+  background-color: #e7e7e7;
+  border-bottom: 1px solid #bdc3c7;
+}
+
+.input > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+@media only screen and (max-width: 37.5em) {
+  .input > *:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .input {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.input__type, .input__description, .input__value {
+  font-family: inherit;
+  font-size: 1.8rem;
+  color: inherit;
+  padding: 1rem 1.5rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 2px;
+}
+
+.input__type:focus, .input__description:focus, .input__value:focus {
+  outline-color: #1abc9c;
+}
+
+.input__add-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+.input__add-btn:hover {
+  fill: #1abc9c;
+}
+
+.container {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .income,
+.container .expenses {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.container .income {
+  margin-right: 8rem;
+}
+
+.container .income .item__value {
+  color: #1abc9c;
+}
+
+.container .income .item__percentage {
+  display: none;
+}
+
+@media only screen and (max-width: 43.75em) {
+  .container .income {
+    margin-right: 0;
+    margin-bottom: 8rem;
+  }
+}
+
+.container .expenses .item__value {
+  color: #e74c3c;
+}
+
+@media only screen and (max-width: 43.75em) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.heading-3 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  display: inline-block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.heading-3--primary {
+  background-image: -webkit-gradient(linear, left top, right top, from(#1abc9c), to(#27ae60));
+  background-image: linear-gradient(to right, #1abc9c, #27ae60);
+}
+
+.heading-3--secondary {
+  background-image: -webkit-gradient(linear, left top, right top, from(#e74c3c), to(#c0392b));
+  background-image: linear-gradient(to right, #e74c3c, #c0392b);
+}
+
+.item-list {
+  list-style: none;
+}
+
+.item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  border-bottom: 1px solid #bdc3c7;
+  position: relative;
+}
+
+.item:first-child {
+  border-top: 1px solid #bdc3c7;
+}
+
+.item:nth-child(even) {
+  background-color: #e7e7e7;
+}
+
+.item__description {
+  margin-right: auto;
+}
+
+.item__percentage {
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
+  font-size: 1.6rem;
+  margin-left: 1rem;
+  text-align: center;
+  background-color: rgba(192, 57, 43, 0.75);
+  color: #ecf0f1;
+}
+
+.item__remove {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 1rem;
+  color: inherit;
+}
+
+.item__remove-btn {
+  width: 3rem;
+  height: 3rem;
+  fill: currentColor;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.item__remove-btn:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.red-focus:focus {
+  outline-color: #e74c3c;
+}
+
+.red:hover {
+  fill: #e74c3c;
+}
+/*# sourceMappingURL=main.css.map */

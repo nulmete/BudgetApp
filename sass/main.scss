@@ -1,0 +1,305 @@
+// Variables
+
+$border: 1px solid #bdc3c7;
+$color-text-1: #333;
+$color-text-2: #ecf0f1;
+$color-background-1: #f4f4f4;
+$color-background-2: #e7e7e7;
+$color-income-1: #1abc9c;
+$color-income-2: #27ae60;
+$color-expenses-1: #e74c3c;
+$color-expenses-2: #c0392b;
+
+// Breakpoints
+
+$bp-large: 50em; // 800px
+$bp-medium: 43.75em; // 700px
+$bp-small: 37.5em; // 600px
+
+// General setup
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+
+    @media only screen and (max-width: $bp-large) {
+        font-size: 56.25%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        font-size: 50%;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    background: $color-background-1;
+    color: $color-text-1;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:focus { outline: none; }
+}
+
+// Utility classes
+
+.mb-small { margin-bottom: 1.5rem; }
+.mb-medium { margin-bottom: 3.5rem; }
+
+// Budget
+
+.budget {
+    background-image: linear-gradient(rgba($color-text-1, .65), rgba($color-text-1, .65)), url(img/background.jpeg);
+    background-size: cover;
+    background-position: top;
+    padding: 5rem 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: $color-text-2;
+
+    &__title {
+        font-size: 5rem;
+        font-weight: 300;
+        line-height: 1;
+    }
+
+    &__value {
+        font-size: 4.5rem;
+        font-weight: 700;
+    }
+
+    &__income {
+        background-color: $color-income-1;
+    }
+
+    &__expenses {
+        background-color: $color-expenses-1;
+    }
+
+    &__income,
+    &__expenses {
+        font-size: 2.2rem;
+        width: 40%;
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+
+        @media only screen and (max-width: $bp-large) {
+            width: 60%;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            width: 80%;
+        }
+    }
+
+    &__income-text,
+    &__expenses-text {
+        margin-right: auto;
+    }
+
+    &__income-percentage,
+    &__expenses-percentage {
+        flex-basis: 10%;
+        font-size: 1.6rem;
+        text-align: center;
+        margin-left: 1rem;
+    }
+
+    &__expenses-percentage {
+        background-color: rgba($color-background-1, .2);
+    }
+
+    &__income,
+    &__expenses,
+    &__expenses-percentage {
+        border-radius: 2px;
+    }
+}
+
+// Input
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0;
+
+    background-color: $color-background-2;
+    border-bottom: $border;
+
+    & > *:not(:last-child) {
+        margin-right: 2rem;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        flex-direction: column;
+    }
+
+    &__type,
+    &__description,
+    &__value {
+        font-family: inherit;
+        font-size: 1.8rem;
+        color: inherit;
+        padding: 1rem 1.5rem;
+        border: $border;
+        border-radius: 2px;
+
+        &:focus {
+            outline-color: $color-income-1;
+        }
+    }
+
+    &__add {
+        &-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            transition: all .2s ease-out;
+
+            &:hover {
+                fill: $color-income-1;
+            }
+        }
+    }
+}
+
+// Container for income and expenses
+
+.container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 5rem 0;
+    display: flex;
+    
+    .income,
+    .expenses {
+        flex: 1;
+    }
+
+    .income {
+        margin-right: 8rem;
+
+        .item__value { color: $color-income-1; }
+
+        .item__percentage { display: none; }
+
+        @media only screen and (max-width: $bp-medium) {
+            margin-right: 0;
+            margin-bottom: 8rem;
+        }
+    }
+
+    .expenses {
+        .item__value { color: $color-expenses-1; }
+    }
+    
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
+}
+
+// Components
+
+.heading-3 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: inline-block;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    &--primary {
+        background-image: linear-gradient(to right, $color-income-1, $color-income-2);
+    }
+
+    &--secondary {
+        background-image: linear-gradient(to right, $color-expenses-1, $color-expenses-2);
+    }
+}
+
+.item-list {
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+
+    border-bottom: $border;
+
+    position: relative;
+
+    &:first-child {
+        border-top: $border;
+    }
+
+    &:nth-child(even) {
+        background-color: $color-background-2;
+    }
+
+    &__description {
+        margin-right: auto;
+    }
+
+    // Only for expenses
+    &__percentage {
+        flex-basis: 10%;
+        font-size: 1.6rem;
+        margin-left: 1rem;
+        text-align: center;
+        background-color: rgba($color-expenses-2, .75);
+        color: $color-text-2;
+    }
+
+    &__remove {
+        display: flex;
+        margin-left: 1rem;
+        color: inherit;
+
+        &-btn {
+            width: 3rem;
+            height: 3rem;
+            fill: currentColor;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+// Outline of input fields when user wants to add an expense
+.red-focus:focus { outline-color: $color-expenses-1; }
+
+// Color of add button when user wants to add an expense and hovers it
+.red:hover { fill: $color-expenses-1; }
